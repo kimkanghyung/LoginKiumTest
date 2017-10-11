@@ -11,6 +11,8 @@ namespace LoginTestKium
         public readonly static TradeSection[] tradeSections = new TradeSection[13];
         public readonly static OrderSection[] orderSections = new OrderSection[6];
         public readonly static Searchgubun[] Searchgubuns = new Searchgubun[4];
+        public readonly static RealDataGubun[] RealDataGubuns = new RealDataGubun[2];
+        public readonly static MinGubun[] MinGubuns = new MinGubun[2];
 
         public class TradeSection
         {
@@ -102,12 +104,83 @@ namespace LoginTestKium
 
             }
         }
+
+        public class RealDataGubun
+        {
+            private int codeNum;
+            private string name;
+
+            public RealDataGubun(int c, string n)
+            {
+                this.codeNum = c;
+                this.name = n;
+
+            }
+
+            public string Name
+            {
+                get
+                {
+                    return this.name;
+                }
+            }
+
+            public int Code
+            {
+                get
+                {
+                    return this.codeNum;
+
+                }
+
+            }
+        }
+
+
+        public class MinGubun
+        {
+            private int codeNum;
+            private string name;
+
+            public MinGubun(int c, string n)
+            {
+                this.codeNum = c;
+                this.name = n;
+
+            }
+
+            public string Name
+            {
+                get
+                {
+                    return this.name;
+                }
+            }
+
+            public int Code
+            {
+                get
+                {
+                    return this.codeNum;
+
+                }
+
+            }
+        }
+
         static Code()
         {
             Searchgubuns[0] = new Searchgubun(1, "외인기간별매매");
             Searchgubuns[1] = new Searchgubun(2, "외인연속매수");
             Searchgubuns[2] = new Searchgubun(3, "기존매수대상");
             Searchgubuns[3] = new Searchgubun(4, "외국계창구매매상위");
+            Searchgubuns[3] = new Searchgubun(5, "급등주로직");
+
+            RealDataGubuns[0] = new RealDataGubun(1, "실시간데이터");
+            RealDataGubuns[1] = new RealDataGubun(2, "조회로직데이터");
+
+            MinGubuns[0] = new MinGubun(3 , "3분봉");
+            MinGubuns[1] = new MinGubun(5 , "5분봉");
 
             orderSections[0] = new OrderSection(1, "신규매수");
             orderSections[1] = new OrderSection(1, "신규매도");

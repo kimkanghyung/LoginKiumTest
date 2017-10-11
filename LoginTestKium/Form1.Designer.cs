@@ -71,9 +71,15 @@
             this.buyStrdNormal = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
             this.buyStrdGood = new System.Windows.Forms.TextBox();
+            this.realdatagubun = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.Mingubun = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.axKHOpenAPI1)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // axKHOpenAPI1
@@ -415,6 +421,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.realdatagubun);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.buyStrdBad);
             this.groupBox1.Controls.Add(this.label12);
@@ -423,7 +431,7 @@
             this.groupBox1.Controls.Add(this.buyStrdGood);
             this.groupBox1.Location = new System.Drawing.Point(362, 99);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(332, 347);
+            this.groupBox1.Size = new System.Drawing.Size(332, 163);
             this.groupBox1.TabIndex = 35;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "주문";
@@ -482,11 +490,57 @@
             this.buyStrdGood.Text = "-2";
             this.buyStrdGood.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // realdatagubun
+            // 
+            this.realdatagubun.FormattingEnabled = true;
+            this.realdatagubun.Location = new System.Drawing.Point(146, 120);
+            this.realdatagubun.Name = "realdatagubun";
+            this.realdatagubun.Size = new System.Drawing.Size(122, 23);
+            this.realdatagubun.TabIndex = 35;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(8, 121);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(127, 15);
+            this.label3.TabIndex = 36;
+            this.label3.Text = "실시간데이터구분";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.Mingubun);
+            this.groupBox3.Controls.Add(this.label8);
+            this.groupBox3.Location = new System.Drawing.Point(362, 283);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(332, 163);
+            this.groupBox3.TabIndex = 37;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "급등주 파라미터";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(8, 27);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(67, 15);
+            this.label8.TabIndex = 14;
+            this.label8.Text = "분봉구분";
+            // 
+            // Mingubun
+            // 
+            this.Mingubun.FormattingEnabled = true;
+            this.Mingubun.Location = new System.Drawing.Point(146, 27);
+            this.Mingubun.Name = "Mingubun";
+            this.Mingubun.Size = new System.Drawing.Size(122, 23);
+            this.Mingubun.TabIndex = 36;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1164, 596);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.button1);
@@ -510,6 +564,8 @@
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -559,6 +615,11 @@
         private System.Windows.Forms.TextBox buyStrdNormal;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.TextBox buyStrdGood;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox realdatagubun;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.ComboBox Mingubun;
+        private System.Windows.Forms.Label label8;
     }
 }
 
