@@ -154,7 +154,7 @@ namespace LoginTestKium
             String parma1, parma2, parma3 , param4;
 
             parma1 = Code.MarketGubuns[MarketGubun.SelectedIndex].Code;
-            parma2 = Code.PriceGubuns[priceStrdGubun.SelectedIndex].ToString();
+            parma2 = Code.PriceGubuns[priceStrdGubun.SelectedIndex].Code.ToString();
             parma3 = Code.DealAmountGubuns[dealAmountGubun_SI.SelectedIndex].Code.ToString();
             param4 = timeStrdbefore.Text;
 
@@ -625,7 +625,6 @@ namespace LoginTestKium
             for (int i = 0; i < Code.MarketGubuns.Length; i++)
             {
                 this.MarketGubun.Items.Add(Code.MarketGubuns[i].Name);
-
             }
             MarketGubun.SelectedIndex = 0;
         }
