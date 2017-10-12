@@ -158,6 +158,9 @@ namespace LoginTestKium
             parma3 = Code.DealAmountGubuns[dealAmountGubun_SI.SelectedIndex].Code.ToString();
             param4 = timeStrdbefore.Text;
 
+            /*2017.10.13 위치변경*/
+            SI_StockMinuteCnt = 0;
+
             Console.WriteLine("======급등주 10023 상위요청========");
             Console.WriteLine("MarketGubuns=" + parma1);
             Console.WriteLine("PriceGubuns=" + parma2);
@@ -252,7 +255,11 @@ namespace LoginTestKium
         {
 
             Console.WriteLine("==================SellStockList_SI=====================");
+
+            /*2017.10.13 위치변경*/
+            System.Threading.Thread.Sleep(2000); /*1초간쉰다..*/
             
+
             string selectedAccount = this.banknum.Text;
 
             axKHOpenAPI1.SetInputValue("계좌번호", selectedAccount.Trim());
