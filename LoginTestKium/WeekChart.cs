@@ -367,5 +367,13 @@ namespace LoginTestKium
             }
             
         }
+
+        public int getFirst5Line()
+        {
+            return data5Line.First().Value;
+
+        }
     }
+
+    
 }

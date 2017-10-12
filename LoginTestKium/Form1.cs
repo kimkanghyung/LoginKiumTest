@@ -78,9 +78,10 @@ namespace LoginTestKium
             if (Code.Searchgubuns[dealGubun.SelectedIndex].Code == 5)
             {
 
-                searchSharpIncrease("001", "1", "1", "5", "00000", "1", "0", "4", "0");
+                //searchSharpIncrease("001", "1", "1", "5", "00000", "1", "0", "4", "0");
+                search_10023SharpIncrease();
 
-               // searchSharpIncrease("001", "1", "2", "1", "00000", "1", "0", "4", "0");
+                // searchSharpIncrease("001", "1", "2", "1", "00000", "1", "0", "4", "0");
                 mTimer.Interval = 180000;
                 // SharpIncrease_stock_list
 
@@ -120,21 +121,58 @@ namespace LoginTestKium
 	8. 가격조건 = 0:전체조회, 1:1천원미만, 2:1천원~2천원, 3:2천원~3천원, 4:5천원~1만원, 5:1만원이상, 8:1천원이상
 	9. 상하한포함 = 0:미포함, 1:포함
     */
-        private void searchSharpIncrease(String parma1 , String parma2, String parma3, String parma4, String parma5, String parma6, String parma7, String parma8, String parma9)
+        private void search_10019SharpIncrease(String parma1 , String parma2, String parma3, String parma4, String parma5, String parma6, String parma7, String parma8, String parma9)
         {
-            Console.WriteLine("======급등주 상위요청========");
+            Console.WriteLine("======급등주 10019 상위요청========");
             axKHOpenAPI1.SetInputValue("시장구분", parma1);
-            axKHOpenAPI1.SetInputValue("등락구분", parma2);
-            axKHOpenAPI1.SetInputValue("시간구분", parma3);
-            axKHOpenAPI1.SetInputValue("시간", parma4);
-            axKHOpenAPI1.SetInputValue("거래량구분", parma5);
-            axKHOpenAPI1.SetInputValue("종목조건", parma6);
-            axKHOpenAPI1.SetInputValue("신용조건", parma7);
-            axKHOpenAPI1.SetInputValue("가격조건", parma8);
-            axKHOpenAPI1.SetInputValue("상하한포함", parma9);
+             axKHOpenAPI1.SetInputValue("등락구분", parma2);
+             axKHOpenAPI1.SetInputValue("시간구분", parma3);
+             axKHOpenAPI1.SetInputValue("시간", parma4);
+             axKHOpenAPI1.SetInputValue("거래량구분", parma5);
+             axKHOpenAPI1.SetInputValue("종목조건", parma6);
+             axKHOpenAPI1.SetInputValue("신용조건", parma7);
+             axKHOpenAPI1.SetInputValue("가격조건", parma8);
+             axKHOpenAPI1.SetInputValue("상하한포함", parma9);
+
+             int nRet = 0;
+             nRet = axKHOpenAPI1.CommRqData("search_10019SharpIncrease", "OPT10019", 0, parma1);
+             System.Threading.Thread.Sleep(1000);
+            
+
+        }
+        /*
+         * 	시장구분 = 000:전체, 001:코스피, 101:코스닥
+            정렬구분 = 1:급증량, 2:급증률
+            시간구분 = 1:분, 2:전일
+            거래량구분 = 5:5천주이상, 10:만주이상, 50:5만주이상, 100:10만주이상, 200:20만주이상, 300:30만주이상, 500:50만주이상, 1000:백만주이상
+            시간 = 분 입력
+            종목조건 = 0:전체조회, 1:관리종목제외, 5:증100제외, 6:증100만보기, 7:증40만보기, 8:증30만보기, 9:증20만보기
+            가격구분 = 0:전체조회, 2:5만원이상, 5:1만원이상, 6:5천원이상, 8:1천원이상, 9:10만원이상
+         */
+        private void search_10023SharpIncrease()
+        {
+            String parma1, parma2, parma3 , param4;
+
+            parma1 = Code.MarketGubuns[MarketGubun.SelectedIndex].Code;
+            parma2 = Code.PriceGubuns[priceStrdGubun.SelectedIndex].ToString();
+            parma3 = Code.DealAmountGubuns[dealAmountGubun_SI.SelectedIndex].Code.ToString();
+            param4 = timeStrdbefore.Text;
+
+            Console.WriteLine("======급등주 10023 상위요청========");
+            Console.WriteLine("MarketGubuns=" + parma1);
+            Console.WriteLine("PriceGubuns=" + parma2);
+            Console.WriteLine("DealAmountGubuns=" + parma3);
+            Console.WriteLine("timeStrdbefore=" + param4);
+            axKHOpenAPI1.SetInputValue("시장구분", parma1);
+            axKHOpenAPI1.SetInputValue("정렬구분", "1");
+            axKHOpenAPI1.SetInputValue("시간구분", "1"); /*시간구분 = 1:분, 2:전일*/
+            axKHOpenAPI1.SetInputValue("거래량구분", parma3);
+            axKHOpenAPI1.SetInputValue("시간", param4);
+            axKHOpenAPI1.SetInputValue("종목조건", "1");
+            axKHOpenAPI1.SetInputValue("가격구분", parma2);
 
             int nRet = 0;
-            nRet = axKHOpenAPI1.CommRqData("searchSharpIncrease", "OPT10019", 0, parma1);
+            nRet = axKHOpenAPI1.CommRqData("search_10023SharpIncrease", "OPT10023", 0, parma1);
             System.Threading.Thread.Sleep(1000);
 
         }
@@ -165,8 +203,8 @@ namespace LoginTestKium
                 Console.WriteLine("chratgubun = " + chratgubun);
 
 
-               if (Int32.Parse(this.LimitStockCnt.Text) <= stock_buy_list.Count)
-               // if (SI_StockMinuteCnt > 5)
+               //if (Int32.Parse(this.LimitStockCnt.Text) <= stock_buy_list.Count)
+                if (SI_StockMinuteCnt > 5)
                 {
                     LogFileWrite("==================급등주 매수 최대 매수 주식수 제한===========" + ObjMinuteCheck.Count);
                     SI_StockMinuteCnt = SharpIncrease_stock_list.Count();
@@ -321,7 +359,7 @@ namespace LoginTestKium
                 if (Code.Searchgubuns[dealGubun.SelectedIndex].Code == 5)
                 {
                     realDataGubunflag = false;
-                    searchSharpIncrease("001", "1", "1", "5", "00000", "1", "0", "4", "0");
+                    search_10023SharpIncrease();
                     //searchSharpIncrease("001", "1", "2", "1", "00000", "1", "0", "4", "0");
 
                     // SharpIncrease_stock_list
@@ -350,13 +388,13 @@ namespace LoginTestKium
           {
                 Console.WriteLine("주식장 종료");
                 LogFileWrite("주식장 종료");
-                //mTimer.Enabled = false;
-                //sw.Close();
+                mTimer.Enabled = false;
+                sw.Close();
                 
-               // Application.SetSuspendState(PowerState.Hibernate, false, false);
-               // return;
-                 checkKospi();
-                 Check_DealPercent();
+                Application.SetSuspendState(PowerState.Hibernate, false, false);
+                return;
+               //  checkKospi();
+                // Check_DealPercent();
             }
           else
           {
@@ -368,7 +406,8 @@ namespace LoginTestKium
                 if (Code.Searchgubuns[dealGubun.SelectedIndex].Code == 5)
                 {
                     realDataGubunflag = false;
-                    searchSharpIncrease("001", "1", "1", "5", "00000", "1", "0", "4", "0");
+                    search_10023SharpIncrease();
+                    // searchSharpIncrease("001", "1", "1", "5", "00000", "1", "0", "4", "0");
                     //searchSharpIncrease("001", "1", "2", "1", "00000", "1", "0", "4", "0");
 
                     // SharpIncrease_stock_list
@@ -567,7 +606,28 @@ namespace LoginTestKium
 
             }
             Mingubun.SelectedIndex = 0;
-            
+
+            /*급등주 추가*/
+            for (int i = 0; i < Code.PriceGubuns.Length; i++)
+            {
+                this.priceStrdGubun.Items.Add(Code.PriceGubuns[i].Name);
+
+            }
+            priceStrdGubun.SelectedIndex = 0;
+
+            for (int i = 0; i < Code.DealAmountGubuns.Length; i++)
+            {
+                this.dealAmountGubun_SI.Items.Add(Code.DealAmountGubuns[i].Name);
+
+            }
+            dealAmountGubun_SI.SelectedIndex = 0;
+
+            for (int i = 0; i < Code.MarketGubuns.Length; i++)
+            {
+                this.MarketGubun.Items.Add(Code.MarketGubuns[i].Name);
+
+            }
+            MarketGubun.SelectedIndex = 0;
         }
 
         private void comboBox_SelectedIndexChanged(object sender, System.EventArgs e)
@@ -933,7 +993,8 @@ namespace LoginTestKium
                 
 
             }
-            else if (e.sRQName == "searchSharpIncrease")
+            // else if (e.sRQName == "searchSharpIncrease")
+            else if (e.sRQName == "search_10023SharpIncrease")            
             {
                 int nCnt = axKHOpenAPI1.GetRepeatCnt(e.sTrCode, e.sRQName);
                 //Foreiner_Stok fs = new Foreiner_Stok();
@@ -1224,8 +1285,8 @@ namespace LoginTestKium
                         //Console.WriteLine("f_stock_profit_percent = " + f_stock_profit_percent);
 
                         float ProfitPercent = float.Parse(f_stock_profit_percent);
-                        float PlusStrd = float.Parse(this.PlusStrd.Text);
-                        float MinusStrd = float.Parse(this.MinusStrd.Text);
+                        float PlusStrd = float.Parse(this.PlusStrd_SI.Text);
+                        float MinusStrd = float.Parse(this.MinusStrd_SI.Text);
                         int StockCnt = Int32.Parse(f_stock_cnt);
                         int Price = Int32.Parse(f_present_price);
                         //Console.WriteLine("판매 종목이익률 = " + ProfitPercent);
@@ -1236,17 +1297,27 @@ namespace LoginTestKium
                             LogFileWrite("판매 종목이익률 = " + ProfitPercent);
                             StockSell(f_stock_cd, StockCnt, Price);
 
-                        }else
-                        {
-                           // if(!SharpIncrease_sell_list.Contains(f_stock_cd))
-                           if (!SharpIncrease_sell_list.ContainsKey(f_stock_cd))
-                            SharpIncrease_sell_list.Add(f_stock_cd, StockCnt);
                         }
+                        else if (ProfitPercent >= PlusStrd) /*매도 */
+                        {
+                            LogFileWrite("====================");
+                            LogFileWrite("판매 종목명 = " + f_stock_cd_nm);
+                            LogFileWrite("판매 종목이익률 = " + ProfitPercent);
+                            StockSell(f_stock_cd, StockCnt, Price);
+                        }
+                        /*2017.10.12 매도시에 매도는 차트는 보지않음 */
+                        //else
+                        //{
+                           // if(!SharpIncrease_sell_list.Contains(f_stock_cd))
+                        //   if (!SharpIncrease_sell_list.ContainsKey(f_stock_cd))
+                        //    SharpIncrease_sell_list.Add(f_stock_cd, StockCnt);
+                        // }
 
                     }
 
                 }
-                sellStockChart_SI();
+                /*2017.10.12 매도시에 매도는 차트는 보지않음 */
+                //sellStockChart_SI();
 
             }
 
@@ -1381,7 +1452,11 @@ namespace LoginTestKium
                 LogFileWrite("3분봉 20선 증가세 = " + wc.Increase20Line());
                 LogFileWrite("5분봉이 20분봉보다 큰가? = " + wc.WhichBigger5Or20());
                 LogFileWrite("=====================================================");
-                if (wc.Increase20Line() || wc.WhichBigger5Or20()) /* 정방향 조건 */
+                //if (wc.Increase20Line() || wc.WhichBigger5Or20()) /* 정방향 조건 */
+                /*
+                 5봉이 20선보다 크고 and 현재가가 5봉보다 큰거
+                 */
+                if(wc.WhichBigger5Or20() && (wc.getFirst5Line() < stock_price)) /*단타용 - 5선이 20선보다 위로올라가면 정방향으로 판단하여 매수*/
                 {
                     LogFileWrite("===========!!!!!StockBuyListSearch!!!!!===============");
                     LogFileWrite("종목코드 = " + tmpStockCd);
@@ -1688,6 +1763,9 @@ namespace LoginTestKium
                     LogFileWrite("Check_DealPercent 실시간데이터!!");
                     Stock_cnt_3 = 0;
                     CheckMinuteChart();
+                }else
+                {
+                    realDataGubunflag = true;
                 }
                 
             }
@@ -1738,13 +1816,15 @@ namespace LoginTestKium
                 DataMinute.Clear();
                 Console.WriteLine("CheckMinuteChart 종료");
                 LogFileWrite("CheckMinuteChart 종료");
-                mTimer.Enabled = true;
-                realDataGubunflag = true;
                 SellStockList();
+                
+                
                 if (Int32.Parse(DateTime.Now.ToString("mm")) >= 50 && Int32.Parse(DateTime.Now.ToString("mm")) <= 53)
                 {
                 TodayCheckStockList();
                 }
+                mTimer.Enabled = true;
+                realDataGubunflag = true;
 
             }
 
@@ -2019,15 +2099,55 @@ namespace LoginTestKium
         {
             //e.sRealKey; // 종목코드
             //e.sRealType; // 주식시세
-            if (e.sRealType == "주식시세")
+
+            //LogFileWrite("sRealKey = " + e.sRealType);
+
+            // LogFileWrite("종목코드 = " + e.sRealKey); /*종목코드*/
+            // String tmpPercent2 = axKHOpenAPI1.GetCommRealData(e.sRealType, 12).Trim().Replace("+", "").Replace("-", "");
+            // LogFileWrite("등락률 = " + axKHOpenAPI1.GetCommRealData(e.sRealType, 12).Trim().Replace("+", "").Replace("-", "")); 
+            // LogFileWrite("현재가  = " + Int32.Parse(axKHOpenAPI1.GetCommRealData(e.sRealType, 10).Trim()));
+           // LogFileWrite("등락률  = " + float.Parse(tmpPercent2));
+            if (e.sRealType == "주식체결")
             {
                 if (realDataGubunflag)
                 {
                     String tmpStockcd = e.sRealKey; /* 주식 코드 */
 
+                    String tmpPercent = axKHOpenAPI1.GetCommRealData(e.sRealType, 12).Trim().Replace("+","");
+
+                  //  LogFileWrite("종목코드 = " + tmpStockcd); /*종목코드*/
+
+                    if (axKHOpenAPI1.GetCommRealData(e.sRealType, 10).Trim().Equals(""))
+                    {
+                        LogFileWrite("종목코드 = " + tmpStockcd); /*종목코드*/
+                        LogFileWrite("OnReceiveRealData 현재가  없어서 종료");
+                        return;
+
+                    }
+                    else
+                    {
+                    //    LogFileWrite("현재가  = " + Int32.Parse(axKHOpenAPI1.GetCommRealData(e.sRealType, 10).Trim()));
+                    }
+
+                    if (tmpPercent.Equals(""))
+                    {
+                        LogFileWrite("종목코드 = " + tmpStockcd); /*종목코드*/
+                        LogFileWrite("OnReceiveRealData 등락률  없어서 종료");
+                        return;
+                    }
+                    else
+                    {
+                    //    LogFileWrite("등락률  = " + float.Parse(tmpPercent));
+                    }
+
+
+
                     if (stock_list3.Contains(tmpStockcd))
                     {
-                        float percent = float.Parse(axKHOpenAPI1.GetCommRealData(e.sRealType, 12).Trim());
+                      //  LogFileWrite("종목코드 = " + tmpStockcd); /*종목코드*/
+                    //    LogFileWrite("등락률 = " + tmpPercent); /*종목코드*/
+
+                        float percent = float.Parse(tmpPercent);
                         int price = Int32.Parse(axKHOpenAPI1.GetCommRealData(e.sRealType, 10).Trim());
 
                         if ((
@@ -2037,10 +2157,7 @@ namespace LoginTestKium
                                     && (Int32.Parse(minPrice.Text) < Math.Abs(price) && Math.Abs(price) < Int32.Parse(maxPrice.Text)))
                         {
 
-                            LogFileWrite("====" + "[" + g_kospiGubun + "]" + "==Buy 체결강도체크=====");
-                            LogFileWrite("종목코드 = " + tmpStockcd); /*종목코드*/
-                            LogFileWrite("현재가  = " + price);
-                            LogFileWrite("===========");
+                            
 
                             if (stock_buy_list.Contains(tmpStockcd))
                             {
@@ -2051,6 +2168,11 @@ namespace LoginTestKium
                                 //StockBuyListSearch(e.sScrNo, Math.Abs(i_price));
                                 if (!ObjMinuteCheck.ContainsKey(tmpStockcd))
                                 {
+                                    LogFileWrite("====" + "[" + g_kospiGubun + "]" + "==Buy 체결강도체크=====");
+                                    LogFileWrite("종목코드 = " + tmpStockcd); /*종목코드*/
+                                    LogFileWrite("현재가  = " + price);
+                                    LogFileWrite("등락률  = " + percent);
+                                    LogFileWrite("===========");
                                     ObjMinuteCheck.Add(tmpStockcd, Math.Abs(price));
                                 }
 
@@ -2206,7 +2328,8 @@ namespace LoginTestKium
             // HttpWebRequest 오브젝트 설정
             wReqFirst.Method = "POST";
             wReqFirst.ContentType = "application/x-www-form-urlencoded";
-            wReqFirst.ContentLength = result.Length; Stream postDataStream = wReqFirst.GetRequestStream();
+            wReqFirst.ContentLength = result.Length;
+            Stream postDataStream = wReqFirst.GetRequestStream();
             postDataStream.Write(result, 0, result.Length);
             postDataStream.Close();
             System.Threading.Thread.Sleep(1000); /*1초간쉰다..*/
