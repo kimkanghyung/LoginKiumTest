@@ -203,8 +203,8 @@ namespace LoginTestKium
                 Console.WriteLine("chratgubun = " + chratgubun);
 
 
-               //if (Int32.Parse(this.LimitStockCnt.Text) <= stock_buy_list.Count)
-                if (SI_StockMinuteCnt > 5)
+               if (Int32.Parse(this.LimitStockCnt.Text) <= stock_buy_list.Count)
+               // if (SI_StockMinuteCnt > 5)
                 {
                     LogFileWrite("==================급등주 매수 최대 매수 주식수 제한===========" + ObjMinuteCheck.Count);
                     SI_StockMinuteCnt = SharpIncrease_stock_list.Count();
