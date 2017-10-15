@@ -82,7 +82,7 @@ namespace LoginTestKium
                 search_10023SharpIncrease();
 
                 // searchSharpIncrease("001", "1", "2", "1", "00000", "1", "0", "4", "0");
-                mTimer.Interval = 180000;
+                mTimer.Interval = 5000;
                 // SharpIncrease_stock_list
 
             }
@@ -157,6 +157,7 @@ namespace LoginTestKium
             parma2 = Code.PriceGubuns[priceStrdGubun.SelectedIndex].Code.ToString();
             parma3 = Code.DealAmountGubuns[dealAmountGubun_SI.SelectedIndex].Code.ToString();
             param4 = timeStrdbefore.Text;
+            mTimer.Enabled = false;
 
             /*2017.10.13 위치변경*/
             SI_StockMinuteCnt = 0;
@@ -242,9 +243,10 @@ namespace LoginTestKium
                 SharpIncrease_stock_list.Clear();
 
                 LogFileWrite("SharpIncreaseCheckMinuteChart 종료");
-                mTimer.Enabled = true;
-                //realDataGubunflag = true;
-                SellStockList_SI();
+                if (Code.sellModeGubuns[sellModeGubun.SelectedIndex].Code ==3)
+                    mTimer.Enabled = true;
+                    //realDataGubunflag = true;
+                    SellStockList_SI();
 
             }
 
@@ -1968,7 +1970,7 @@ namespace LoginTestKium
             string BuyStockCd = stock_cd;
             double TempD = System.Math.Truncate(3000000 * 0.1 / StockPrice);
             int nCnt = Int32.Parse(TempD.ToString()); /*총매수량*/
-            mTimer.Enabled = true;
+            //mTimer.Enabled = true;
 
 
             LogFileWrite("StockBuy 시작");
@@ -2065,7 +2067,7 @@ namespace LoginTestKium
         {
             string AccountNum = this.banknum.Text;
             string BuyStockCd = stock_cd;
-            mTimer.Enabled = true;
+           // mTimer.Enabled = true;
             int nCnt = cnt;
             int Tprice = price;
 
