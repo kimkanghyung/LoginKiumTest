@@ -1040,6 +1040,7 @@ namespace LoginTestKium
                         }
                         
                     }
+                    if (i == 30) break;
                         
 
                 }
