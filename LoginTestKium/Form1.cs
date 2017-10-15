@@ -209,7 +209,7 @@ namespace LoginTestKium
                if (Int32.Parse(this.LimitStockCnt.Text) <= stock_buy_list.Count)
                // if (SI_StockMinuteCnt > 5)
                 {
-                    LogFileWrite("==================급등주 매수 최대 매수 주식수 제한===========" + ObjMinuteCheck.Count);
+                    LogFileWrite("==================급등주 매수 최대 매수 주식수 제한===========" + stock_buy_list.Count);
                     SI_StockMinuteCnt = SharpIncrease_stock_list.Count();
                     SharpIncreaseCheckMinuteChart();
                     return;
@@ -2182,9 +2182,7 @@ namespace LoginTestKium
                     String tmpStockcd = e.sRealKey; /* 주식 코드 */
 
                     String tmpPercent = axKHOpenAPI1.GetCommRealData(e.sRealType, 12).Trim().Replace("+","");
-
-                  //  LogFileWrite("종목코드 = " + tmpStockcd); /*종목코드*/
-
+                    
                     if (axKHOpenAPI1.GetCommRealData(e.sRealType, 10).Trim().Equals(""))
                     {
                         LogFileWrite("종목코드 = " + tmpStockcd); /*종목코드*/
