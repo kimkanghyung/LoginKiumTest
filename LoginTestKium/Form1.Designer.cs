@@ -57,6 +57,10 @@
             this.label14 = new System.Windows.Forms.Label();
             this.PlusStrd = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.MinusStrd_SI = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.PlusStrd_SI = new System.Windows.Forms.TextBox();
             this.priceStrdGubun = new System.Windows.Forms.ComboBox();
             this.label9 = new System.Windows.Forms.Label();
             this.timeStrdbefore = new System.Windows.Forms.TextBox();
@@ -84,10 +88,12 @@
             this.label19 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.StockBenefit = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.MinusStrd_SI = new System.Windows.Forms.TextBox();
-            this.label23 = new System.Windows.Forms.Label();
-            this.PlusStrd_SI = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.min5div20 = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.max5div20 = new System.Windows.Forms.TextBox();
+            this.sellModeGubun = new System.Windows.Forms.ComboBox();
+            this.label26 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.axKHOpenAPI1)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -353,6 +359,12 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.sellModeGubun);
+            this.groupBox3.Controls.Add(this.label26);
+            this.groupBox3.Controls.Add(this.label25);
+            this.groupBox3.Controls.Add(this.max5div20);
+            this.groupBox3.Controls.Add(this.label24);
+            this.groupBox3.Controls.Add(this.min5div20);
             this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Controls.Add(this.MinusStrd_SI);
             this.groupBox3.Controls.Add(this.label23);
@@ -369,10 +381,46 @@
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Location = new System.Drawing.Point(362, 99);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(311, 347);
+            this.groupBox3.Size = new System.Drawing.Size(311, 385);
             this.groupBox3.TabIndex = 37;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "급등주 파라미터";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(6, 231);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(97, 15);
+            this.label10.TabIndex = 48;
+            this.label10.Text = "손절매도기준";
+            // 
+            // MinusStrd_SI
+            // 
+            this.MinusStrd_SI.Location = new System.Drawing.Point(146, 231);
+            this.MinusStrd_SI.Name = "MinusStrd_SI";
+            this.MinusStrd_SI.Size = new System.Drawing.Size(122, 25);
+            this.MinusStrd_SI.TabIndex = 47;
+            this.MinusStrd_SI.Text = "-1";
+            this.MinusStrd_SI.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(6, 199);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(97, 15);
+            this.label23.TabIndex = 46;
+            this.label23.Text = "손익매도기준";
+            // 
+            // PlusStrd_SI
+            // 
+            this.PlusStrd_SI.Location = new System.Drawing.Point(146, 199);
+            this.PlusStrd_SI.Name = "PlusStrd_SI";
+            this.PlusStrd_SI.Size = new System.Drawing.Size(122, 25);
+            this.PlusStrd_SI.TabIndex = 45;
+            this.PlusStrd_SI.Text = "1";
+            this.PlusStrd_SI.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // priceStrdGubun
             // 
@@ -628,41 +676,58 @@
             this.StockBenefit.Text = "5";
             this.StockBenefit.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // label10
+            // label24
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(6, 231);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(97, 15);
-            this.label10.TabIndex = 48;
-            this.label10.Text = "손절매도기준";
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(6, 267);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(102, 15);
+            this.label24.TabIndex = 50;
+            this.label24.Text = "5선/20선 최소";
             // 
-            // MinusStrd_SI
+            // min5div20
             // 
-            this.MinusStrd_SI.Location = new System.Drawing.Point(146, 231);
-            this.MinusStrd_SI.Name = "MinusStrd_SI";
-            this.MinusStrd_SI.Size = new System.Drawing.Size(122, 25);
-            this.MinusStrd_SI.TabIndex = 47;
-            this.MinusStrd_SI.Text = "-1";
-            this.MinusStrd_SI.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.min5div20.Location = new System.Drawing.Point(146, 264);
+            this.min5div20.Name = "min5div20";
+            this.min5div20.Size = new System.Drawing.Size(122, 25);
+            this.min5div20.TabIndex = 49;
+            this.min5div20.Text = "1.005";
+            this.min5div20.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // label23
+            // label25
             // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(6, 199);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(97, 15);
-            this.label23.TabIndex = 46;
-            this.label23.Text = "손익매도기준";
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(6, 298);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(102, 15);
+            this.label25.TabIndex = 52;
+            this.label25.Text = "5선/20선 최대";
             // 
-            // PlusStrd_SI
+            // max5div20
             // 
-            this.PlusStrd_SI.Location = new System.Drawing.Point(146, 199);
-            this.PlusStrd_SI.Name = "PlusStrd_SI";
-            this.PlusStrd_SI.Size = new System.Drawing.Size(122, 25);
-            this.PlusStrd_SI.TabIndex = 45;
-            this.PlusStrd_SI.Text = "1";
-            this.PlusStrd_SI.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.max5div20.Location = new System.Drawing.Point(146, 295);
+            this.max5div20.Name = "max5div20";
+            this.max5div20.Size = new System.Drawing.Size(122, 25);
+            this.max5div20.TabIndex = 51;
+            this.max5div20.Text = "1.02";
+            this.max5div20.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // sellModeGubun
+            // 
+            this.sellModeGubun.FormattingEnabled = true;
+            this.sellModeGubun.Location = new System.Drawing.Point(146, 326);
+            this.sellModeGubun.Name = "sellModeGubun";
+            this.sellModeGubun.Size = new System.Drawing.Size(122, 23);
+            this.sellModeGubun.TabIndex = 54;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(6, 329);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(67, 15);
+            this.label26.TabIndex = 53;
+            this.label26.Text = "매도구분";
             // 
             // Form1
             // 
@@ -761,6 +826,12 @@
         private System.Windows.Forms.TextBox MinusStrd_SI;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.TextBox PlusStrd_SI;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.TextBox max5div20;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.TextBox min5div20;
+        private System.Windows.Forms.ComboBox sellModeGubun;
+        private System.Windows.Forms.Label label26;
     }
 }
 

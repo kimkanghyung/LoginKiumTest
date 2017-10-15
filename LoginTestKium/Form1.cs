@@ -288,7 +288,9 @@ namespace LoginTestKium
 
 
             LogFileWrite("==================sellStockChart_SI=====================");
-            
+            LogFileWrite("SharpIncrease_sell_list.Count() = " + SharpIncrease_sell_list.Count());
+            LogFileWrite("SI_sellStockMinuteCnt = " + SI_sellStockMinuteCnt);
+
 
             if (SharpIncrease_sell_list.Count() == 0)
             {
@@ -346,7 +348,8 @@ namespace LoginTestKium
                 LogFileWrite("sellStockChart_SI 종료");
                 mTimer.Enabled = true;
                 //realDataGubunflag = true;
-               // SellStockList();
+               // if (Code.sellModeGubuns[sellModeGubun.SelectedIndex].Code == 1 || Code.sellModeGubuns[sellModeGubun.SelectedIndex].Code == 2)
+               //     SellStockList();
 
             }
 
@@ -634,6 +637,12 @@ namespace LoginTestKium
                 this.MarketGubun.Items.Add(Code.MarketGubuns[i].Name);
             }
             MarketGubun.SelectedIndex = 0;
+
+            for (int i = 0; i < Code.sellModeGubuns.Length; i++)
+            {
+                this.sellModeGubun.Items.Add(Code.sellModeGubuns[i].Name);
+            }
+            sellModeGubun.SelectedIndex = 0;
         }
 
         private void comboBox_SelectedIndexChanged(object sender, System.EventArgs e)
@@ -1298,23 +1307,67 @@ namespace LoginTestKium
                         //Console.WriteLine("판매 종목이익률 = " + ProfitPercent);
                         if (ProfitPercent < MinusStrd) /*손절*/
                         {
-                            LogFileWrite("====================");
+                            LogFileWrite("========손절로 매도============");
                             LogFileWrite("판매 종목명 = " + f_stock_cd_nm);
                             LogFileWrite("판매 종목이익률 = " + ProfitPercent);
                             StockSell(f_stock_cd, StockCnt, Price);
 
                         }
-                        else if (ProfitPercent >= PlusStrd) /*매도 */
+                        else if (Code.sellModeGubuns[sellModeGubun.SelectedIndex].Code == 1) /*차트 and 최대 매수 기준*/
+                        {
+
+                            
+
+                            if (ProfitPercent >= PlusStrd)
+                            {
+                                LogFileWrite("=========차트 and 최대 매수 기준(이익나서 매도)=========== ");
+                                LogFileWrite("판매 종목명 = " + f_stock_cd_nm);
+                                LogFileWrite("판매 종목이익률 = " + ProfitPercent);
+
+                                if (!SharpIncrease_sell_list.ContainsKey(f_stock_cd))
+                                {
+                                    SharpIncrease_sell_list.Add(f_stock_cd, StockCnt);
+                                }
+                            }
+
+                        }
+                        else if (Code.sellModeGubuns[sellModeGubun.SelectedIndex].Code == 2)/*차트만*/
+                        {
+
+                            LogFileWrite("=========차트 기준=========== ");
+
+                            if (!SharpIncrease_sell_list.ContainsKey(f_stock_cd))
+                                {
+                                    SharpIncrease_sell_list.Add(f_stock_cd, StockCnt);
+                                }
+                            
+                                
+                        }
+                        else if (Code.sellModeGubuns[sellModeGubun.SelectedIndex].Code == 3)/*최대 기준매도 기준*/
+                        {
+
+                            LogFileWrite("=========기준매도 기준=========== ");
+                            if (ProfitPercent >= PlusStrd)
+                            {
+                                LogFileWrite("====================");
+                                LogFileWrite("판매 종목명 = " + f_stock_cd_nm);
+                                LogFileWrite("판매 종목이익률 = " + ProfitPercent);
+                                StockSell(f_stock_cd, StockCnt, Price);
+                            }
+                        }
+                        /*매도
+                        else if (ProfitPercent >= PlusStrd) 
                         {
                             LogFileWrite("====================");
                             LogFileWrite("판매 종목명 = " + f_stock_cd_nm);
                             LogFileWrite("판매 종목이익률 = " + ProfitPercent);
                             StockSell(f_stock_cd, StockCnt, Price);
                         }
+                        */
                         /*2017.10.12 매도시에 매도는 차트는 보지않음 */
                         //else
                         //{
-                           // if(!SharpIncrease_sell_list.Contains(f_stock_cd))
+                        // if(!SharpIncrease_sell_list.Contains(f_stock_cd))
                         //   if (!SharpIncrease_sell_list.ContainsKey(f_stock_cd))
                         //    SharpIncrease_sell_list.Add(f_stock_cd, StockCnt);
                         // }
@@ -1323,7 +1376,8 @@ namespace LoginTestKium
 
                 }
                 /*2017.10.12 매도시에 매도는 차트는 보지않음 */
-                //sellStockChart_SI();
+                if (Code.sellModeGubuns[sellModeGubun.SelectedIndex].Code == 1 || Code.sellModeGubuns[sellModeGubun.SelectedIndex].Code == 2)
+                    sellStockChart_SI();
 
             }
 
@@ -1457,12 +1511,18 @@ namespace LoginTestKium
                 LogFileWrite("3분봉 5선 증가세 = " + wc.Increase5Line());
                 LogFileWrite("3분봉 20선 증가세 = " + wc.Increase20Line());
                 LogFileWrite("5분봉이 20분봉보다 큰가? = " + wc.WhichBigger5Or20());
+                LogFileWrite("5/20 값 = " + wc.get20div5());
                 LogFileWrite("=====================================================");
                 //if (wc.Increase20Line() || wc.WhichBigger5Or20()) /* 정방향 조건 */
                 /*
                  5봉이 20선보다 크고 and 현재가가 5봉보다 큰거
                  */
-                if(wc.WhichBigger5Or20() && (wc.getFirst5Line() < stock_price)) /*단타용 - 5선이 20선보다 위로올라가면 정방향으로 판단하여 매수*/
+                float min5to20 = float.Parse(min5div20.Text);
+                float max5to20 = float.Parse(max5div20.Text);
+
+                if (wc.WhichBigger5Or20() && (wc.getFirst5Line() < stock_price) 
+                   && (wc.get20div5() > min5to20 && wc.get20div5() < max5to20) 
+                    ) /*단타용 - 5선이 20선보다 위로올라가면 정방향으로 판단하여 매수*/
                 {
                     LogFileWrite("===========!!!!!StockBuyListSearch!!!!!===============");
                     LogFileWrite("종목코드 = " + tmpStockCd);
@@ -1511,8 +1571,10 @@ namespace LoginTestKium
                 LogFileWrite("3분봉 5선 증가세 = " + wc.Increase5Line());
                 LogFileWrite("3분봉 20선 증가세 = " + wc.Increase20Line());
                 LogFileWrite("5분봉이 20분봉보다 큰가? = " + wc.WhichBigger5Or20());
+                LogFileWrite("현재가 = " + stock_price);
+                LogFileWrite("5분봉 가격 = " + wc.getFirst5Line());
                 LogFileWrite("=====================================================");
-                if (!wc.WhichBigger5Or20()) /* 5일봉이 20일봉보다 내려가쓸 때 */
+                if (stock_price < wc.getFirst5Line()) /* 5일봉이 20일봉보다 내려가쓸 때 */
                 {
                     LogFileWrite("===========!!!!!SIsellStock!!!!!===============");
                     LogFileWrite("종목코드 = " + tmpStockCd);

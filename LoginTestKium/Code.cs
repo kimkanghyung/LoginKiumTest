@@ -22,6 +22,42 @@ namespace LoginTestKium
         public readonly static MarketGubun[] MarketGubuns = new MarketGubun[3];
 
 
+        public readonly static sellModeGubun[] sellModeGubuns = new sellModeGubun[3];
+
+
+        public class sellModeGubun
+        {
+            private int codeNum;
+            private string name;
+
+            public sellModeGubun(int c, string n)
+            {
+                this.codeNum = c;
+                this.name = n;
+
+            }
+
+            public string Name
+            {
+                get
+                {
+                    return this.name;
+                }
+            }
+
+            public int Code
+            {
+                get
+                {
+                    return this.codeNum;
+
+                }
+
+            }
+
+        }
+
+
         public class PriceGubun
         {
             private int codeNum;
@@ -294,6 +330,11 @@ namespace LoginTestKium
             MarketGubuns[0] = new MarketGubun("000", "전체");
             MarketGubuns[1] = new MarketGubun("001", "코스피");
             MarketGubuns[2] = new MarketGubun("000", "코스닥");
+
+            /*급등주 sell mode*/
+            sellModeGubuns[0] = new sellModeGubun(1, "차트 and 기준매도");
+            sellModeGubuns[1] = new sellModeGubun(2, "차트");
+            sellModeGubuns[2] = new sellModeGubun(3, "기준매도");
 
             Searchgubuns[0] = new Searchgubun(1, "외인기간별매매");
             Searchgubuns[1] = new Searchgubun(2, "외인연속매수");

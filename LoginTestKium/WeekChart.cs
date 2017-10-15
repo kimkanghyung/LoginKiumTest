@@ -373,6 +373,19 @@ namespace LoginTestKium
             return data5Line.First().Value;
 
         }
+
+        public float get20div5()
+        {
+            if (data20Line.Count > 0 && data5Line.Count > 0)
+            {
+               // int tmp1 = data5Line.First().Value;
+               // float tmpValue1 = (float)tmp1;
+                return (float)data5Line.First().Value / (float)data20Line.First().Value;
+            }
+
+            return (float)0;
+
+        }
     }
 
     
