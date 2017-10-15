@@ -185,8 +185,7 @@ namespace LoginTestKium
         {
 
             String[] array = SharpIncrease_stock_list.ToArray();
-
-            LogFileWrite("==================매수대상 분차트체크=====================");
+            
 
            // LogFileWrite("SharpIncrease_stock_list.Count()== " + SharpIncrease_stock_list.Count());
 
@@ -1547,6 +1546,15 @@ namespace LoginTestKium
 
                     StockBuyListSearch(tmpStockCd, Math.Abs(stock_price));
 
+                }else
+                {
+                    LogFileWrite("====================!!!매수대상 제외!!!=================");
+                    LogFileWrite("종목코드 = " + tmpStockCd);
+                    LogFileWrite("5분봉이 20분봉보다 큰가? = " + wc.WhichBigger5Or20());
+                    LogFileWrite("5분봉 값 = " + wc.getFirst5Line());
+                    LogFileWrite("현재가  = " + stock_price);
+                    LogFileWrite("5/20 값 = " + wc.get20div5());
+                    LogFileWrite("=====================================================");
                 }
 
                 System.Threading.Thread.Sleep(1000); /*1초간쉰다..*/
