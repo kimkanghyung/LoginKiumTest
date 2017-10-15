@@ -1028,6 +1028,7 @@ namespace LoginTestKium
                             || f_stock_cd_nm.Contains("선물")
                             || f_stock_cd_nm.Contains("하나머스트")
                              || f_stock_cd_nm.Contains("ETN")
+                             || f_stock_cd_nm.Contains("스팩")
                             )
                         {
 
