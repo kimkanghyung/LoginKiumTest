@@ -2205,7 +2205,7 @@ namespace LoginTestKium
                 if (sendStockDealCnt != "" && sendStockDealCnt == jumunCNT) /*체결누적건수와 주문건수와 같을때만 보낸다.*/
                 {
                     string[] tmpT = { fromDate, sendStockCD, sendStockCDNM, sendStockDealCnt, sendStockDealReqPrice, sendStockDealPrice, jumunGUBUN, sprofit };
-                    SendResult(tmpT);
+                    //SendResult(tmpT);
                 }
                 
             }
