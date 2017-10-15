@@ -295,6 +295,7 @@ namespace LoginTestKium
 
             if (SharpIncrease_sell_list.Count() == 0)
             {
+                mTimer.Enabled = true;
                 SI_StockMinuteCnt = 0;
                 return;
             }
@@ -1013,6 +1014,7 @@ namespace LoginTestKium
             else if (e.sRQName == "search_10023SharpIncrease")            
             {
                 int nCnt = axKHOpenAPI1.GetRepeatCnt(e.sTrCode, e.sRQName);
+                //int t = 0;
                 //Foreiner_Stok fs = new Foreiner_Stok();
                 // LogFileWrite("nCnt = " + nCnt);
                 for (int i = 0; i < nCnt; i++)
@@ -1020,7 +1022,13 @@ namespace LoginTestKium
                     string f_stock_cd = axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, i, "종목코드").Trim();
                     string f_stock_cd_nm = axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, i, "종목명").Trim();
                     string f_stock_seq = axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, i, "순위").Trim();
-                   // LogFileWrite("종모코드 = " + f_stock_cd + "종목명 = " + f_stock_cd_nm);
+                    string f_stock_price = axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, i, "현재가").Trim().Replace("+", "");
+                    string f_stock_percent = axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, i, "등락률").Trim().Replace("+", "");
+                    float minStockPrice_SI = float.Parse(this.minStockPrice_SI.Text);
+                    // LogFileWrite("종모코드 = " + f_stock_cd + "종목명 = " + f_stock_cd_nm);
+
+                    float ff_stock_price = float.Parse(f_stock_price);
+                    float ff_stock_percent = float.Parse(f_stock_percent);
 
                     if (!SharpIncrease_stock_list.Contains(f_stock_cd))
                     {
@@ -1036,11 +1044,17 @@ namespace LoginTestKium
                         }else
                         {
                             LogFileWrite("종모코드 = " + f_stock_cd + "종목명 = " + f_stock_cd_nm);
+                            /*2000원 이상 등락률이 0 이상*/
+                            if (!SharpIncrease_stock_list.Contains(f_stock_cd)
+                                && ff_stock_price > minStockPrice_SI
+                                && ff_stock_percent > 0
+                                ) 
                             SharpIncrease_stock_list.Add(f_stock_cd);
+                           
                         }
                         
                     }
-                    if (i == 30) break;
+                    if (SharpIncrease_stock_list.Count == 30) break;
                         
 
                 }
@@ -1969,7 +1983,8 @@ namespace LoginTestKium
         {
             string AccountNum = this.banknum.Text;
             string BuyStockCd = stock_cd;
-            double TempD = System.Math.Truncate(3000000 * 0.1 / StockPrice);
+            int l_totalprice = Int32.Parse(this.stockTotalPrice_SI.Text); 
+            double TempD = System.Math.Truncate(l_totalprice * 10 * 0.1 / StockPrice);
             int nCnt = Int32.Parse(TempD.ToString()); /*총매수량*/
             //mTimer.Enabled = true;
 
@@ -2183,7 +2198,7 @@ namespace LoginTestKium
                 if (sendStockDealCnt != "" && sendStockDealCnt == jumunCNT) /*체결누적건수와 주문건수와 같을때만 보낸다.*/
                 {
                     string[] tmpT = { fromDate, sendStockCD, sendStockCDNM, sendStockDealCnt, sendStockDealReqPrice, sendStockDealPrice, jumunGUBUN, sprofit };
-                    SendResult(tmpT);
+                    //SendResult(tmpT);
                 }
                 
             }
