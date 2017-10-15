@@ -74,6 +74,7 @@ namespace LoginTestKium
         public void AutoBuyStart()
         {
             BankStockcdSearch();
+            System.Threading.Thread.Sleep(2000);
 
             if (Code.Searchgubuns[dealGubun.SelectedIndex].Code == 5)
             {
@@ -82,7 +83,7 @@ namespace LoginTestKium
                 search_10023SharpIncrease();
 
                 // searchSharpIncrease("001", "1", "2", "1", "00000", "1", "0", "4", "0");
-                mTimer.Interval = 5000;
+                mTimer.Interval = 10000;
                 // SharpIncrease_stock_list
 
             }
@@ -1048,6 +1049,7 @@ namespace LoginTestKium
                             if (!SharpIncrease_stock_list.Contains(f_stock_cd)
                                 && ff_stock_price > minStockPrice_SI
                                 && ff_stock_percent > 0
+                                && !(stock_buy_list.Contains(f_stock_cd))
                                 ) 
                             SharpIncrease_stock_list.Add(f_stock_cd);
                            
@@ -1986,7 +1988,8 @@ namespace LoginTestKium
             int l_totalprice = Int32.Parse(this.stockTotalPrice_SI.Text); 
             double TempD = System.Math.Truncate(l_totalprice * 10 * 0.1 / StockPrice);
             int nCnt = Int32.Parse(TempD.ToString()); /*총매수량*/
-            //mTimer.Enabled = true;
+
+            
 
 
             LogFileWrite("StockBuy 시작");
@@ -2003,6 +2006,10 @@ namespace LoginTestKium
                 return;
 
             }
+
+            Console.WriteLine(nCnt);
+            LogFileWrite("stock_cd 매수!!! 건수 = " + nCnt);
+            //mTimer.Enabled = true;
 
             lRet = axKHOpenAPI1.SendOrder("StockBuy", "7001", AccountNum, 1, BuyStockCd, nCnt, 0, "03" , "");
             System.Threading.Thread.Sleep(1000); /*1초간쉰다..*/
@@ -2198,7 +2205,7 @@ namespace LoginTestKium
                 if (sendStockDealCnt != "" && sendStockDealCnt == jumunCNT) /*체결누적건수와 주문건수와 같을때만 보낸다.*/
                 {
                     string[] tmpT = { fromDate, sendStockCD, sendStockCDNM, sendStockDealCnt, sendStockDealReqPrice, sendStockDealPrice, jumunGUBUN, sprofit };
-                    //SendResult(tmpT);
+                    SendResult(tmpT);
                 }
                 
             }
