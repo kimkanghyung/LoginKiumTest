@@ -1023,7 +1023,12 @@ namespace LoginTestKium
 
                     if (!SharpIncrease_stock_list.Contains(f_stock_cd))
                     {
-                        if (f_stock_cd_nm.Contains("KODEX") || f_stock_cd_nm.Contains("TIGER") || f_stock_cd_nm.Contains("KBSTAR"))
+                        if (f_stock_cd_nm.Contains("KODEX") || f_stock_cd_nm.Contains("TIGER") || f_stock_cd_nm.Contains("KBSTAR")
+                            || f_stock_cd_nm.Contains("레버리지") || f_stock_cd_nm.Contains("WTI")
+                            || f_stock_cd_nm.Contains("선물")
+                            || f_stock_cd_nm.Contains("하나머스트")
+                             || f_stock_cd_nm.Contains("ETN")
+                            )
                         {
 
                         }else
