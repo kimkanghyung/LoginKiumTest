@@ -57,6 +57,10 @@
             this.label14 = new System.Windows.Forms.Label();
             this.PlusStrd = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.stockTotalPrice_SI = new System.Windows.Forms.TextBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.minStockPrice_SI = new System.Windows.Forms.TextBox();
+            this.label27 = new System.Windows.Forms.Label();
             this.sellModeGubun = new System.Windows.Forms.ComboBox();
             this.label26 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
@@ -94,10 +98,8 @@
             this.label19 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.StockBenefit = new System.Windows.Forms.TextBox();
-            this.label27 = new System.Windows.Forms.Label();
-            this.minStockPrice_SI = new System.Windows.Forms.TextBox();
-            this.stockTotalPrice_SI = new System.Windows.Forms.TextBox();
-            this.label28 = new System.Windows.Forms.Label();
+            this.dealPercentStrdSI = new System.Windows.Forms.TextBox();
+            this.label29 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.axKHOpenAPI1)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -363,6 +365,8 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.dealPercentStrdSI);
+            this.groupBox3.Controls.Add(this.label29);
             this.groupBox3.Controls.Add(this.stockTotalPrice_SI);
             this.groupBox3.Controls.Add(this.label28);
             this.groupBox3.Controls.Add(this.minStockPrice_SI);
@@ -389,10 +393,46 @@
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Location = new System.Drawing.Point(362, 99);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(311, 429);
+            this.groupBox3.Size = new System.Drawing.Size(311, 483);
             this.groupBox3.TabIndex = 37;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "급등주 파라미터";
+            // 
+            // stockTotalPrice_SI
+            // 
+            this.stockTotalPrice_SI.Location = new System.Drawing.Point(146, 389);
+            this.stockTotalPrice_SI.Name = "stockTotalPrice_SI";
+            this.stockTotalPrice_SI.Size = new System.Drawing.Size(122, 25);
+            this.stockTotalPrice_SI.TabIndex = 58;
+            this.stockTotalPrice_SI.Text = "300000";
+            this.stockTotalPrice_SI.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(6, 392);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(112, 15);
+            this.label28.TabIndex = 57;
+            this.label28.Text = "종목당매수가격";
+            // 
+            // minStockPrice_SI
+            // 
+            this.minStockPrice_SI.Location = new System.Drawing.Point(146, 358);
+            this.minStockPrice_SI.Name = "minStockPrice_SI";
+            this.minStockPrice_SI.Size = new System.Drawing.Size(122, 25);
+            this.minStockPrice_SI.TabIndex = 56;
+            this.minStockPrice_SI.Text = "2000";
+            this.minStockPrice_SI.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(6, 361);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(97, 15);
+            this.label27.TabIndex = 55;
+            this.label27.Text = "종목최소가격";
             // 
             // sellModeGubun
             // 
@@ -462,7 +502,7 @@
             this.MinusStrd_SI.Name = "MinusStrd_SI";
             this.MinusStrd_SI.Size = new System.Drawing.Size(122, 25);
             this.MinusStrd_SI.TabIndex = 47;
-            this.MinusStrd_SI.Text = "-1";
+            this.MinusStrd_SI.Text = "-3.5";
             this.MinusStrd_SI.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label23
@@ -480,7 +520,7 @@
             this.PlusStrd_SI.Name = "PlusStrd_SI";
             this.PlusStrd_SI.Size = new System.Drawing.Size(122, 25);
             this.PlusStrd_SI.TabIndex = 45;
-            this.PlusStrd_SI.Text = "1";
+            this.PlusStrd_SI.Text = "3";
             this.PlusStrd_SI.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // priceStrdGubun
@@ -737,41 +777,23 @@
             this.StockBenefit.Text = "5";
             this.StockBenefit.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // label27
+            // dealPercentStrdSI
             // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(6, 361);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(97, 15);
-            this.label27.TabIndex = 55;
-            this.label27.Text = "종목최소가격";
+            this.dealPercentStrdSI.Location = new System.Drawing.Point(146, 420);
+            this.dealPercentStrdSI.Name = "dealPercentStrdSI";
+            this.dealPercentStrdSI.Size = new System.Drawing.Size(122, 25);
+            this.dealPercentStrdSI.TabIndex = 60;
+            this.dealPercentStrdSI.Text = "3";
+            this.dealPercentStrdSI.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // minStockPrice_SI
+            // label29
             // 
-            this.minStockPrice_SI.Location = new System.Drawing.Point(146, 358);
-            this.minStockPrice_SI.Name = "minStockPrice_SI";
-            this.minStockPrice_SI.Size = new System.Drawing.Size(122, 25);
-            this.minStockPrice_SI.TabIndex = 56;
-            this.minStockPrice_SI.Text = "2000";
-            this.minStockPrice_SI.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // stockTotalPrice_SI
-            // 
-            this.stockTotalPrice_SI.Location = new System.Drawing.Point(146, 389);
-            this.stockTotalPrice_SI.Name = "stockTotalPrice_SI";
-            this.stockTotalPrice_SI.Size = new System.Drawing.Size(122, 25);
-            this.stockTotalPrice_SI.TabIndex = 58;
-            this.stockTotalPrice_SI.Text = "300000";
-            this.stockTotalPrice_SI.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(6, 392);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(112, 15);
-            this.label28.TabIndex = 57;
-            this.label28.Text = "종목당매수가격";
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(6, 423);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(142, 15);
+            this.label29.TabIndex = 59;
+            this.label29.Text = "전봉대비거래량비율";
             // 
             // Form1
             // 
@@ -880,6 +902,8 @@
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.TextBox minStockPrice_SI;
         private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.TextBox dealPercentStrdSI;
+        private System.Windows.Forms.Label label29;
     }
 }
 
