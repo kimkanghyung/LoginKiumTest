@@ -218,7 +218,7 @@
             this.totalAmount.Name = "totalAmount";
             this.totalAmount.Size = new System.Drawing.Size(122, 25);
             this.totalAmount.TabIndex = 13;
-            this.totalAmount.Text = "1200000";
+            this.totalAmount.Text = "10000000";
             this.totalAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // autoStocStartkButton
@@ -323,7 +323,7 @@
             this.LimitStockCnt.Name = "LimitStockCnt";
             this.LimitStockCnt.Size = new System.Drawing.Size(122, 25);
             this.LimitStockCnt.TabIndex = 19;
-            this.LimitStockCnt.Text = "4";
+            this.LimitStockCnt.Text = "10";
             this.LimitStockCnt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.LimitStockCnt.TextChanged += new System.EventHandler(this.LimitStockCnt_TextChanged);
             // 
@@ -404,7 +404,7 @@
             this.stockTotalPrice_SI.Name = "stockTotalPrice_SI";
             this.stockTotalPrice_SI.Size = new System.Drawing.Size(122, 25);
             this.stockTotalPrice_SI.TabIndex = 58;
-            this.stockTotalPrice_SI.Text = "300000";
+            this.stockTotalPrice_SI.Text = "1000000";
             this.stockTotalPrice_SI.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label28
@@ -783,7 +783,7 @@
             this.dealPercentStrdSI.Name = "dealPercentStrdSI";
             this.dealPercentStrdSI.Size = new System.Drawing.Size(122, 25);
             this.dealPercentStrdSI.TabIndex = 60;
-            this.dealPercentStrdSI.Text = "3";
+            this.dealPercentStrdSI.Text = "5";
             this.dealPercentStrdSI.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label29

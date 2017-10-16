@@ -1581,7 +1581,7 @@ namespace LoginTestKium
                 float dealAmount_1 = 0;
                 float dealAmount_2 = 0;
 
-
+                
                 for (int i = 0; i < nCnt; i++)
                 {
                     string tmpDay = axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, i, "체결시간").Trim();
@@ -1600,6 +1600,42 @@ namespace LoginTestKium
                     if (i == 100) break;
 
                 }
+                
+                /*
+                int cnttmp = 0;
+                for (int i = 0; i < nCnt; i++)
+                {
+                    string tmpDay = axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, i, "체결시간").Trim();
+                    string f_present_price = axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, i, "현재가").Trim().Replace("+","").Replace("-","");
+                    string f_present_dealamt = axKHOpenAPI1.GetCommData(e.sTrCode, e.sRQName, i, "거래량").Trim();
+                    // LogFileWrite("CheckMinuteChart 수신!! 가격 = " + Math.Abs(Int32.Parse(f_present_price)));
+                    // Console.WriteLine("!!!!!!!!!!!시간 = " + tmpDay + " !!!!!!!!! i = " + i);
+                    // DateTime t1 = DateTime.Parse(tmpDay);
+                    // DateTime t2 = DateTime.Parse("20171016110000");
+                    //tmpDay.ToString("yyyy-MM-dd-HH-mm-ss");
+
+                    //Console.WriteLine("시간 = " + tmpDay + " 현재가 = " + f_present_price);
+                    //if (DateTime.Compare(t2,t1) > 0)
+                    if(Int32.Parse(tmpDay.Substring(6,6)) < 161310)
+                    {
+                        //Console.WriteLine("tmpDay.Substring(6,4) = " + tmpDay.Substring(6, 4));
+                        data.Add(tmpDay, Math.Abs(Int32.Parse(f_present_price)));
+                        if (cnttmp == 0) stock_price = Math.Abs(Int32.Parse(f_present_price));
+
+                        if (cnttmp == 0) dealAmount_0 = float.Parse(f_present_dealamt);
+                        if (cnttmp == 1) dealAmount_1 = float.Parse(f_present_dealamt);
+                        if (cnttmp == 2) dealAmount_2 = float.Parse(f_present_dealamt);
+
+                        if (cnttmp == 0) Console.WriteLine("시간 = " + tmpDay + " 현재가 = " + f_present_price);
+
+                        if (cnttmp == 60) break;
+
+                        cnttmp++;
+
+                    }
+
+
+                }*/
 
                 WeekChart wc = new WeekChart(data);
                 //DataMinute.Add(tmpStockCd, wc);
@@ -1623,6 +1659,7 @@ namespace LoginTestKium
                 if (wc.WhichBigger5Or20() && (wc.getFirst5Line() < stock_price) 
                    && (wc.get20div5() > min5to20 && wc.get20div5() < max5to20)
                    && (increaseDealAmountPercent1 > dealPercentStrdSI || increaseDealAmountPercent2 > dealPercentStrdSI)
+                   && (dealAmount_0 > 50000 || dealAmount_1 > 50000 || dealAmount_2 > 50000)
                     ) /*단타용 - 5선이 20선보다 위로올라가면 정방향으로 판단하여 매수*/
                 {
                     LogFileWrite("====================!!!매수대상!!!=================");
