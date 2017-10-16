@@ -390,7 +390,7 @@ namespace LoginTestKium
         public void timer_Elapsed(object sender, EventArgs e)
         {
             timeCnt++;
-           if (DateTime.Now.TimeOfDay > TimeSpan.Parse("09:00:00") && DateTime.Now.TimeOfDay < TimeSpan.Parse(this.EndTime.Text))
+           if (DateTime.Now.TimeOfDay > TimeSpan.Parse("09:03:00") && DateTime.Now.TimeOfDay < TimeSpan.Parse(this.EndTime.Text))
           {
                 checkKospi();
 
@@ -442,16 +442,16 @@ namespace LoginTestKium
                 //SellStockList();
                 //checkKospi();
                 //Check_DealPercent();
-                if (Code.Searchgubuns[dealGubun.SelectedIndex].Code == 5)
-                {
-                    realDataGubunflag = false;
-                    BankStockcdSearch_SI();
+            //    if (Code.Searchgubuns[dealGubun.SelectedIndex].Code == 5)
+            //    {
+           //         realDataGubunflag = false;
+            //        BankStockcdSearch_SI();
                     // searchSharpIncrease("001", "1", "1", "5", "00000", "1", "0", "4", "0");
                     //searchSharpIncrease("001", "1", "2", "1", "00000", "1", "0", "4", "0");
 
                     // SharpIncrease_stock_list
 
-                }
+             //   }
 
 
 
